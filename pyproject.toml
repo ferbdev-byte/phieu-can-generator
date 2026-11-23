@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "phieu-can-generator"
-version = "0.1.0"
+version = "0.2.0"
 description = "Xuất phiếu cân / phiếu thu mua phế liệu ra PDF tiếng Việt: tự tính khối lượng, thành tiền, đọc số tiền bằng chữ."
 readme = "README.md"
 license = { text = "MIT" }
