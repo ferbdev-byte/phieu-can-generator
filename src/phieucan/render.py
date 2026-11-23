@@ -7,7 +7,7 @@ from importlib import resources
 from pathlib import Path
 
 from reportlab.lib import colors
-from reportlab.lib.pagesizes import A5, landscape
+from reportlab.lib.pagesizes import A4, A5, landscape
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
@@ -40,7 +40,10 @@ def _dt(d: datetime | None) -> str:
     return d.strftime("%H:%M %d/%m/%Y") if d else ""
 
 
-def render_pdf(slip: Slip, company: Company, out: str | Path) -> Path:
+def render_pdf(slip: Slip, company: Company, out: str | Path, paper: str = "a5") -> Path:
+    """paper: "a5" (A5 ngang, mặc định) hoặc "a4" (A4 dọc, cùng bề ngang nên bố cục giữ nguyên)."""
+    if paper not in ("a5", "a4"):
+        raise ValueError("paper phải là a5 hoặc a4")
     _fonts()
     out = Path(out)
     s = ParagraphStyle("t", fontName="VN", fontSize=8.5, leading=11)
@@ -48,7 +51,8 @@ def render_pdf(slip: Slip, company: Company, out: str | Path) -> Path:
     title = ParagraphStyle("h", fontName="VN-B", fontSize=14, leading=18, alignment=1, spaceAfter=2)
     center = ParagraphStyle("c", parent=s, alignment=1)
 
-    doc = SimpleDocTemplate(str(out), pagesize=landscape(A5), leftMargin=10 * mm, rightMargin=10 * mm,
+    pagesize = landscape(A5) if paper == "a5" else A4
+    doc = SimpleDocTemplate(str(out), pagesize=pagesize, leftMargin=10 * mm, rightMargin=10 * mm,
                             topMargin=8 * mm, bottomMargin=8 * mm, title=f"{slip.kind} {slip.number}",
                             author=company.name)
     story = []

@@ -38,6 +38,9 @@ phieucan examples/phieu-mau.json -c examples/cong-ty.json -o phieu
 
 # Cả lô từ đầu cân, đổi tiêu đề phiếu
 phieucan phieu-can.jsonl -c cong-ty.json -o phieu --kind "PHIẾU THU MUA PHẾ LIỆU" --prefix TM
+
+# In khổ A4 dọc cho máy in văn phòng (mặc định là A5 ngang)
+phieucan examples/phieu-mau.json -c examples/cong-ty.json --a4
 ```
 
 Định dạng một phiếu (xem đầy đủ trong [examples/phieu-mau.json](examples/phieu-mau.json)):
