@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from importlib import resources
 from pathlib import Path
 
@@ -35,7 +36,7 @@ def n(x: float) -> str:
     return f"{x:,.0f}".replace(",", ".")
 
 
-def _dt(d) -> str:
+def _dt(d: datetime | None) -> str:
     return d.strftime("%H:%M %d/%m/%Y") if d else ""
 
 

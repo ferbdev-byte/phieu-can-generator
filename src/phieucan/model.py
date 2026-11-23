@@ -6,6 +6,7 @@ import json
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 
 @dataclass
@@ -24,7 +25,7 @@ class Line:
     impurity_pct: float = 0.0
     unit_price: int = 0    # đồng/kg
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.gross_kg < self.tare_kg:
             self.gross_kg, self.tare_kg = self.tare_kg, self.gross_kg
         if not 0 <= self.impurity_pct < 100:
@@ -70,7 +71,7 @@ class Slip:
         return sum(x.amount for x in self.lines)
 
     @classmethod
-    def from_dict(cls, d: dict) -> Slip:
+    def from_dict(cls, d: dict[str, Any]) -> Slip:
         """Nhận cả định dạng riêng lẫn một dòng phiếu của weighbridge-reader."""
         if "gross_kg" in d and "lines" not in d:  # bản ghi weighbridge-reader
             times = d.get("times", {})
