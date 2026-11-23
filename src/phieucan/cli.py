@@ -20,6 +20,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("-c", "--company", help="file JSON thông tin công ty")
     p.add_argument("-o", "--out", default="phieu", help="thư mục đầu ra")
     p.add_argument("--prefix", default="PC", help="tiền tố số phiếu tự sinh")
+    p.add_argument("--a4", action="store_true", help="in khổ A4 dọc thay vì A5 ngang")
     p.add_argument("--kind", help='tiêu đề phiếu, vd. "PHIẾU THU MUA PHẾ LIỆU"')
     args = p.parse_args(argv)
 
@@ -36,7 +37,7 @@ def main(argv: list[str] | None = None) -> int:
         slip.number = slip.number or f"{args.prefix}{stamp}-{i:03d}"
         if args.kind:
             slip.kind = args.kind
-        path = render_pdf(slip, company, out_dir / f"{slip.number}.pdf")
+        path = render_pdf(slip, company, out_dir / f"{slip.number}.pdf", "a4" if args.a4 else "a5")
         print(f"{path}  ({len(slip.lines)} dòng, {slip.total_amount:,} đ)".replace(",", "."))
     return 0
 
