@@ -5,4 +5,4 @@ from .money import doc_so, so_tien_bang_chu
 from .render import render_pdf
 
 __all__ = ["Company", "Line", "Slip", "doc_so", "render_pdf", "so_tien_bang_chu"]
-__version__ = "0.1.0"
+__version__ = "0.2.0"
