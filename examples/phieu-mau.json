@@ -1,0 +1,17 @@
+{
+  "number": "PC261123-001",
+  "kind": "PHIẾU THU MUA PHẾ LIỆU",
+  "partner": "Cơ sở Cơ khí Mẫu",
+  "partner_phone": "0911 111 111",
+  "plate": "51C-123.45",
+  "driver": "Nguyễn Văn A",
+  "time_in": "2026-11-23T08:15:00",
+  "time_out": "2026-11-23T08:31:00",
+  "lines": [
+    {"material": "Sắt vụn loại 2", "gross_kg": 24360, "tare_kg": 9120, "impurity_pct": 2, "unit_price": 8000},
+    {"material": "Đồng cáp", "gross_kg": 620, "tare_kg": 0, "unit_price": 175000},
+    {"material": "Nhôm định hình", "gross_kg": 1480, "tare_kg": 35, "impurity_pct": 1.5, "unit_price": 48000}
+  ],
+  "note": "Dữ liệu mẫu để minh hoạ.",
+  "weigher": "Trần Thị B"
+}

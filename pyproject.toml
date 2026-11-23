@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phieu-can-generator"
+version = "0.1.0"
+description = "Xuất phiếu cân / phiếu thu mua phế liệu ra PDF tiếng Việt: tự tính khối lượng, thành tiền, đọc số tiền bằng chữ."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Võ Ngọc Cường" }]
+requires-python = ">=3.10"
+dependencies = ["reportlab>=4.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5", "pypdf>=4"]
+
+[project.scripts]
+phieucan = "phieucan.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+phieucan = ["*.ttf", "*.json", "*.txt"]
+
+[tool.ruff]
+line-length = 125
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
