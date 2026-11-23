@@ -20,7 +20,7 @@ classifiers = [
 dependencies = ["reportlab>=4.0"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.5", "pypdf>=4"]
+dev = ["pytest>=8", "ruff>=0.5", "mypy>=1.10", "pypdf>=4"]
 
 [project.scripts]
 phieucan = "phieucan.cli:main"
@@ -29,7 +29,7 @@ phieucan = "phieucan.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-phieucan = ["*.ttf", "*.json", "*.txt"]
+phieucan = ["py.typed", "*.ttf", "*.json", "*.txt"]
 
 [tool.ruff]
 line-length = 125
@@ -41,3 +41,8 @@ select = ["E", "F", "W", "I", "B", "UP"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+files = ["src"]
