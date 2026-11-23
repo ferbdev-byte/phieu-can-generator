@@ -20,7 +20,7 @@ classifiers = [
 dependencies = ["reportlab>=4.0"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.5", "mypy>=1.10", "pypdf>=4"]
+dev = ["pytest>=8", "ruff>=0.5", "mypy>=1.10", "pytest-cov>=5", "pypdf>=4"]
 
 [project.scripts]
 phieucan = "phieucan.cli:main"
@@ -40,9 +40,18 @@ select = ["E", "F", "W", "I", "B", "UP"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--cov=phieucan --cov-report=term-missing"
 pythonpath = ["src"]
 
 [tool.mypy]
 strict = true
 ignore_missing_imports = true
 files = ["src"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+skip_covered = true
+exclude_also = ["if __name__ == .__main__.:", "raise SystemExit"]
